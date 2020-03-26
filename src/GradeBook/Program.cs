@@ -8,9 +8,9 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("Don's Gradebook");
-            book.AddGrade(55.5);
-            book.AddGrade(66.6);
-            book.AddGrade(55.1234);
+            book.AddGrade(40.5);
+            book.AddGrade(50.5);
+            book.AddGrade(60.5);
             // book.AddGrade(105555);
             book.DisplayStatistics();
         }

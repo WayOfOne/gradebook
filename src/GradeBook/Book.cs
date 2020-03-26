@@ -15,7 +15,7 @@ namespace GradeBook
 
         }
     }
-    class Book
+    public class Book
     {
         private List<double> grades;
         private string name;
@@ -40,13 +40,13 @@ namespace GradeBook
             
             var sum=0.0;
             double average;
-            var highestGrade = double.MaxValue;
-            var lowestGrade = double.MinValue;
+            var highestGrade = double.MinValue;
+            var lowestGrade = double.MaxValue;
             foreach(var number in this.grades)
             {
                 sum+=number;
-                lowestGrade = Math.Max(number, lowestGrade);
-                highestGrade = Math.Min(number, highestGrade);
+                lowestGrade = Math.Min(number, lowestGrade);
+                highestGrade = Math.Max(number, highestGrade);
 
             }
             average = sum/this.grades.Count;
