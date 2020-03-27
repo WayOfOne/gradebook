@@ -17,9 +17,9 @@ namespace GradeBook.Tests
             //action
             var (average, low, high) = book.ComputeGrades();
             //assert
-            Assert.Equal(average, 70.3, 1);
-            Assert.Equal(low, 55.5, 1);
-            Assert.Equal(high, 99, 1);
+            Assert.Equal(70.3, average, 1);
+            Assert.Equal(55.5, low, 1);
+            Assert.Equal(99, high, 1);
 
         }
     }
