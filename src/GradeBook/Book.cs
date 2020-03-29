@@ -30,6 +30,11 @@ namespace GradeBook
 
     public class NamedObject
     {
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+
         public string Name
         {
             get;
@@ -41,17 +46,17 @@ namespace GradeBook
         private List<double> grades;
         readonly string category = "Science";
 
-        public Book(string name)
+        public Book(string name): base(name)
         {
             grades = new List<double>();
-            Name = name;
+            // Name = name;
             category = "";
         }
 
-        public Book(string name, string category)
+        public Book(string name, string category): base(name)
         {
             grades = new List<double>();
-            Name = name;
+            // Name = name;
             this.category = category;
         }
 
