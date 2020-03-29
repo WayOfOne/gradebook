@@ -18,12 +18,24 @@ namespace GradeBook
     public class Book
     {
         private List<double> grades;
-        public string Name;
+        public string Name{
+            get;
+            set;
+        }
+        readonly string category = "Science";
 
         public Book(string name)
         {
             grades = new List<double>();
-            this.Name = name;
+            Name = name;
+            category = "";
+        }
+
+        public Book(string name, string category)
+        {
+            grades = new List<double>();
+            Name = name;
+            this.category = category;
         }
         public void AddGrade(double grade)
         {
@@ -36,7 +48,7 @@ namespace GradeBook
             }
         }
 
-        public (double, double, double, char) ComputeGrades()
+        public (double, double, double, char, string) ComputeGrades()
         {
             
             var sum=0.0;
@@ -71,16 +83,18 @@ namespace GradeBook
                     break;
 
             }
-            return (average, lowestGrade, highestGrade, letter);
+            return (average, lowestGrade, highestGrade, letter, Name);
         }
 
         public void DisplayStatistics()
         {
-            var (average, lowest, highest, letter)= this.ComputeGrades();
-            System.Console.WriteLine($"The average grade is {average:N1}");
-            System.Console.WriteLine($"The lowest grade is {lowest:N1}");
-            System.Console.WriteLine($"The highest grade is {highest:N1}");
-            System.Console.WriteLine($"The Letter grade is {letter}");
+           
+            var (average, lowest, highest, letter, name)= this.ComputeGrades();
+            Console.WriteLine($"For the Book {name}");
+            Console.WriteLine($"The lowest grade is {lowest:N1}");
+            Console.WriteLine($"The highest grade is {highest:N1}");
+            Console.WriteLine($"The average grade is {average:N1}");
+            Console.WriteLine($"The Letter grade is {letter}");
         }
     }
 }

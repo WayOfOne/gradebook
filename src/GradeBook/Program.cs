@@ -29,14 +29,11 @@ namespace GradeBook
                 {
                     Console.WriteLine(ex.Message);
                 }
-                finally
-                {
-                    Console.WriteLine("Try Again");
-                }
             }
             
             book.DisplayStatistics();
         }
+            
     }
 
 }
