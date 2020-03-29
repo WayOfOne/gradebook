@@ -4,8 +4,28 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
+
+    public delegate string WriteLogDelegate(string logMessage);
     public class TypeTests
     {
+        int count = 0;
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            WriteLogDelegate log = ReturnMessage;
+            log += IncrementCount;
+            var result = log("test");
+            Assert.Equal("test", result);
+            Assert.Equal(1, count);
+            
+        }
+
+        string IncrementCount(string message){ 
+            count++;
+            return message;
+        }
+        string ReturnMessage(string message){ return message;}
+
         [Fact]
         public void PassByValueTest()
         {
