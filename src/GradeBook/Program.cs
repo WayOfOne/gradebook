@@ -8,8 +8,12 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("Don's Gradebook");
-            var done = false;
-            while(!done){
+            book.GradeAdded += OnGradeAdded;
+            book.GradeAdded += OnGradeAdded;
+            book.GradeAdded -= OnGradeAdded;
+            book.GradeAdded += OnGradeAdded;
+
+            while(true){
                 System.Console.WriteLine("Enter a grade or 'q' to quit");
                 var input = Console.ReadLine();
                 if(input == "q")
@@ -32,6 +36,11 @@ namespace GradeBook
             }
             
             book.DisplayStatistics();
+        }
+
+        static void OnGradeAdded(object sender, GradeAddedArgs e)
+        {
+            System.Console.WriteLine($"Grade {e.Message} added into {sender.ToString()}");
         }
             
     }

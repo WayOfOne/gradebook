@@ -15,6 +15,16 @@ namespace GradeBook
 
         }
     }
+
+    public class GradeAddedArgs : EventArgs{
+        public GradeAddedArgs(string s){
+            message = s;
+        }
+        private string message;
+        public string Message{
+            get{return message;}
+        }
+    }
     public class Book
     {
         private List<double> grades;
@@ -23,6 +33,8 @@ namespace GradeBook
             set;
         }
         readonly string category = "Science";
+
+        public delegate void GradeAddedDelegate(object sender, GradeAddedArgs args);
 
         public Book(string name)
         {
@@ -42,11 +54,17 @@ namespace GradeBook
             if(grade>=0 && grade<=100)
             {
                 grades.Add(grade);
+                if(GradeAdded!=null)
+                {
+                    GradeAdded(this, new GradeAddedArgs(grade.ToString()));
+                }
             }
             else{
                 throw new InvalideGradeException(nameof(grade), grade.ToString());
             }
         }
+
+        public event GradeAddedDelegate GradeAdded;
 
         public (double, double, double, char, string) ComputeGrades()
         {
