@@ -16,6 +16,8 @@ namespace GradeBook
         }
     }
 
+    public delegate void GradeAddedDelegate(object sender, GradeAddedArgs args);
+
     public class GradeAddedArgs : EventArgs{
         public GradeAddedArgs(string s){
             message = s;
@@ -25,16 +27,19 @@ namespace GradeBook
             get{return message;}
         }
     }
-    public class Book
+
+    public class NamedObject
     {
-        private List<double> grades;
-        public string Name{
+        public string Name
+        {
             get;
             set;
         }
+    }
+    public class Book : NamedObject
+    {
+        private List<double> grades;
         readonly string category = "Science";
-
-        public delegate void GradeAddedDelegate(object sender, GradeAddedArgs args);
 
         public Book(string name)
         {
@@ -49,6 +54,9 @@ namespace GradeBook
             Name = name;
             this.category = category;
         }
+
+        public event GradeAddedDelegate GradeAdded;
+
         public void AddGrade(double grade)
         {
             if(grade>=0 && grade<=100)
@@ -63,8 +71,6 @@ namespace GradeBook
                 throw new InvalideGradeException(nameof(grade), grade.ToString());
             }
         }
-
-        public event GradeAddedDelegate GradeAdded;
 
         public (double, double, double, char, string) ComputeGrades()
         {
